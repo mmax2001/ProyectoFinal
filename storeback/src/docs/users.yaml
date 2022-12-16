@@ -1,0 +1,70 @@
+#User
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: ObjectId
+          description: Id de usuario autogenerada por la base de datos mongo.
+        name:
+          type: string
+          description: nombre de usuario.
+        surname:
+          type: string
+          description: apellido de usuario.
+        email:
+          type: string
+          description: email del usuario.
+        password:
+          type: string
+          description: contraseña del usuario hasheada.
+        age:
+          type: string
+          description: edad del usuario.
+        adresss:
+          type: string
+          description: direccion de recepcion para el pedido del usuario.
+        phone:
+          type: string
+          description: numero telefonico de contacto del usuario.
+        role:
+          type: string
+          description: rol asignado al usuario. 
+        avatar:
+          type: string
+          description: imagen de perfil del usuario.
+        cart:
+          type: ObjectId
+          description: Id de carrito asignado al usuario.
+      example:
+        id: 637aec5214f59a675474a3b0
+        name: Bob
+        surname: Esponja
+        email: bobesponja@gmail.com
+        password: $2b$10$2209DgvT.u1N59/OH4DvAeGToLZj83pS6EvnZeCH9fA2H48rMs/ei
+        age: 6
+        adress: fondo de bikini
+        phone: 4567-1234
+        role: user
+        avatar: http://localhost:8080/images/1669000273801-peekaboo.jpg
+        cart: 637aec5114f59a675474a3ae
+paths:
+  /api/users:
+    get: 
+      summary: Obtiene la lista completa de usuarios
+      tags:
+      - Users
+      responses:
+        "success":
+        description: Los usuarios se obtuvieron correctamente
+        content:
+          application/json:
+            schema:
+              type: array
+              items: 
+                $ref: '#/components/schemas/User'
+
+      
+
+      

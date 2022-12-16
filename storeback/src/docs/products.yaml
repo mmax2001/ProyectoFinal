@@ -1,0 +1,11 @@
+#Product
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: ObjectId
+          description: Id de producto autogenerada por la base de datos mongo
+        name:
+          type: string
