@@ -55,6 +55,12 @@ paths:
       summary: Obtiene la lista completa de usuarios
       tags:
       - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
         "success":
         description: Los usuarios se obtuvieron correctamente

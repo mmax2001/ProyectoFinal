@@ -48,7 +48,7 @@ const saveProduct = async(req,res) => {
     } catch (error) {
         res.send(error);
     }
-};
+}
 const updateProduct = async(req,res) => {
     try {
         let product = req.body;
