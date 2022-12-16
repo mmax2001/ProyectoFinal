@@ -9,6 +9,7 @@ import cartRouter from './src/routes/cart.router.js';
 import session, { Session } from 'express-session';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
+import orderRouter from './src/routes/order.router.js';
 
 const app = express();
 
@@ -36,5 +37,6 @@ app.use('/api/users',usersRouter);
 app.use('/api/sessions',sessionRouter);
 app.use('/api/products',productRouter);
 app.use('/api/cart',cartRouter);
+app.use('/api/orders',orderRouter);
 
 const server=app.listen(8080,()=>console.log(`Servidor http escuchando en la direccion y puerto http://localhost:${config.server.PORT}`))

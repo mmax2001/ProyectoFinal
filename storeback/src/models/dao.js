@@ -3,6 +3,8 @@ import config from "../config/config.js"
 import User from "./users.js"
 import Cart from "./cart.js"
 import Product from "./product.js"
+import Order from "./order.js"
+
 
 export default class Dao {
     constructor(config){
@@ -17,11 +19,13 @@ export default class Dao {
         const userSchema=mongoose.Schema(User.schema,timestamps);
         const cartSchema=mongoose.Schema(Cart.schema,timestamps);
         const productSchema=mongoose.Schema(Product.schema,timestamps);
+        const orderSchema=mongoose.Schema(Order.schema,timestamps);
 
         this.models={
             [User.collection]: mongoose.model(User.collection,userSchema),
             [Cart.collection]: mongoose.model(Cart.collection,cartSchema),
-            [Product.collection]: mongoose.model(Product.collection,productSchema)
+            [Product.collection]: mongoose.model(Product.collection,productSchema),
+            [Order.collection]: mongoose.model(Order.collection,orderSchema)
         }
     }
     getAll = async(options,entity) => {

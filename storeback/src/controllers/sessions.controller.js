@@ -3,7 +3,7 @@ import UserDtoToken from "../dto/User.js";
 import { cartService, userService } from "../services/index.js";
 import { createHash } from "../utils.js";
 import jwt from 'jsonwebtoken';
-import localStorage from "localStorage";
+
 
 
 const register = async (req,res) => {

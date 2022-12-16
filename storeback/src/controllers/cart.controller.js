@@ -1,7 +1,5 @@
 import { ERRORS } from "../utils.js";
 import { cartService, productService, userService } from "../services/index.js";
-cartService
-
 
 const getCart = async(req,res) => {
     
