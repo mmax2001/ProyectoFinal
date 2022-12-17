@@ -2,7 +2,7 @@ import { orderService } from "../services/index.js";
 
 const endOrder = async (req, res) => {
   try {
-    const { name, email, adress, idCart } = req.body.data;
+    const { name, email, adress, idCart } = req.body;
     const order = await orderService.finalOrder(name, email, adress, idCart);
     res.send(order);
   } catch (error) {
