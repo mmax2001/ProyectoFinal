@@ -8,17 +8,13 @@ import jwt from 'jsonwebtoken';
 
 const register = async (req,res) => {
     let {name,surname,email,age,adress,phone,password}=req.body;
-    console.log("REQ TIENE",req.file);
-    console.log("REQ BODY TIENE 1",req.body);
+    
     try{
         if(!req.file) return res.status(500).send({status:"error",error:"Error en carga de imagen"})
-        console.log("ENTRO A TRY!",userService)
         let user = await userService.getBy({email});
-        console.log("PASO GETBY",user)
         if(user) return res.status(400).send({status:"error",error:"El usuario ya existe"})
         let cart = await cartService.save({products:[]});
         const hashedPassword = await createHash(password);
-        console.log("REQ BODY TIENE 2",req.body);
         const newUser={
             name,
             surname,
@@ -42,7 +38,6 @@ const register = async (req,res) => {
 const login = async (req,res)=>{
     let {email,password}=req.body;
     if(!email||!password) return res.status(400).send({status:"error",error:"Complete empty values"})
-    console.log("ESTO ES CONFIG.ROOT",config.ROOT.EMAIL)
     if(email===config.ROOT.EMAIL && password===config.ROOT.PASSWORD){
         const admin = {
             id:0,
@@ -57,12 +52,7 @@ const login = async (req,res)=>{
     const userToToken=new UserDtoToken(user);
     const token=jwt.sign(userToToken.toObject(),config.JWT.SECRET,{expiresIn:"1h"});
     res.cookie(config.JWT.COOKIE,token,{maxAge:360000}).send({status:"success",payload:{user:userToToken}});
-    const {data}=res;
-    console.log(res);
-    //localStorage.setItem('user',JSON.stringify(data.payload.user));
-    // const decoded  = jwt.verify(userToToken,config.JWT.COOKIE);
-    // console.log(decoded);
-
+    
 }
 
 export default {register,login}

@@ -9,3 +9,56 @@ components:
           description: Id de producto autogenerada por la base de datos mongo
         name:
           type: string
+        description:
+          type: string
+        code:
+          type: string
+        thumbnail:
+          type: string
+        price:
+          type: number
+        stock: 
+          type: number
+        quantity:
+          type: number
+      example:
+        id: 639a5882eeaf14b182f624c4
+        name: Calculadora Cientifica
+        description: saraza
+        code: 135
+        thumbnail: https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png
+        price: 455.56
+        stock: 100       
+        quantity: 100
+paths:
+  /api/products/ :
+    get:
+      summary: Obtiene la lista completa de productos
+      tags:
+        - Productos
+      responses:
+        "200":
+          description: Los productos se obtuvieron correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /api/products/639a5882eeaf14b182f624c4:
+    get:
+      summary: Obtiene un producto por su id
+      tags:
+        - Productos
+      responses:
+        "200":
+          description: El producto se obtuvo correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        
+
+

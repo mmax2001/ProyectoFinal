@@ -1,6 +1,7 @@
-import Dao from "../models/dao.js";
+import { transporter } from "../config/nodemailer.js";
 import CentralRepository from "./CentralRepository.js";
 import { cartService } from "./index.js";
+import Order from "../models/order.js";
 
 export default class OrderServices extends CentralRepository{
   constructor(dao) {

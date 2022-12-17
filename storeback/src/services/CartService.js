@@ -35,7 +35,6 @@ export default class CartService extends CentralRepository {
     deleteProductCart = async (id, productId) => {
         const cart = await this.getBy({_id:id});
         if (!cart) throw { status: 404, error: 'Carrito no encontrado' };
-        //const productId = await productService.getBy({_id:productId});
         const product = cart.products.find((e) => (e._id.valueOf())==productId);
         console.log(product);
         if (!product) throw { status: 404, error: 'Producto no encontrado' };
