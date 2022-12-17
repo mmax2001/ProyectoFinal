@@ -1,0 +1,92 @@
+#Cart
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        id:
+          type: ObjectId
+          description: Id de carrito autogenerada por la base de datos mongo
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              producto:
+                $ref: "#/components/schemas/Product"        
+      example:
+        id: 637aeb9edb05a76326a3f407
+        products: Array
+paths:
+  /api/cart/637aeb9edb05a76326a3f407:
+    get:
+      summary: Obtiene un carrito por su id
+      tags:
+        - Carritos
+      responses:
+        "200":
+          description: El carrito se obtuvo correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+  /api/cart/637aeb9edb05a76326a3f407/product:
+    post:
+      summary: Agrega un producto carrito segun su id,recibiendo por body el producto
+      tags:
+        - Carritos
+      responses:
+        "200":
+          description: El producto se agrego correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/nuevoProducto'
+    delete:
+      summary: Vacia productos del carrito con id por ejemplo '637aeb9edb05a76326a3f407'
+      tags:
+        - Carritos
+      responses:
+        "200":
+          description: Los productos del carrito se borraron correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+  /api/cart/6398a7c581eaecf99b86ce75/product/639a7e4d5048ac793c331d15:
+    delete:
+      summary: Borra un producto del carrito con id segun el id del carrito
+      tags:
+        - Carritos
+      responses:
+        "200":
+          description: El producto del carrito se borro correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/nuevoProducto'
+   
+
+
+
+  

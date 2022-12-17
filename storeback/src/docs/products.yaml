@@ -1,5 +1,42 @@
 #Product
 components:
+  requestBodies:
+    nuevoProducto:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: id de producto autogenerado por mongo
+        name:
+          type: string
+          description: nombre del producto
+        description:
+          type: string
+          description: breve descripcion del producto
+        code:
+          type: string
+          description: codigo unico de articulo
+        thumbnail:
+          type: string
+          description: link a imagen de articulo
+        price:
+          type: number
+          description: precio del articulor
+        stock: 
+          type: number
+          description: cantidad disponible
+        quantity:
+          type: number
+          description: cantidad seleccionada
+      example:
+        _id: ObjectId('639a7e4d5048ac793c331d15')
+        name: Lapiz Dibujo
+        description: Lapiz HB
+        code: 136
+        thumbnail: https://cdn0.iconfinder.com/data/icons/shift-free/32/Pencil-512.png
+        price: 55.56
+        stock: 100
+        quantity: 100
   schemas:
     Product:
       type: object
@@ -59,6 +96,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
-        
+    post:
+      summary: Agrega un producto por su id
+      tags:
+        - Productos
+      responses:
+        "200":
+          description: El producto se obtuvo correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    update:
+      summary: Actualiza un producto por su id
+      tags:
+        - Productos
+      responses:
+        "200":
+          description: El producto se actualizo correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    delete:
+      summary: Borra un producto segun su id
+      tags:
+        - Productos
+      responses:
+        "200":
+          description: El producto se borro correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'        
 
 

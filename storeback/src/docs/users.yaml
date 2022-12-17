@@ -1,5 +1,50 @@
 #User
 components:
+  requestBodies:
+    nuevoUsuario:
+      type: object
+      properties:
+        name:
+          type: string
+          description: nombre de usuario
+        surname: 
+          type: string
+          description: apellido de usuario
+        email: 
+          type: string
+          description: correo de usuario
+        password:
+          type: string
+          description: clave de ingreso del usuario
+        age:
+          type: number
+          description: edad del usuario
+        adress:
+          type: string
+          description: direccion del usuario
+        phone:
+          type: string
+          description: numero telefonico del usuario
+      example:
+        name: Fulano
+        surname: Fulanin
+        email: fulano@gmail.com
+        password: 1234
+        age: 33
+        adress: av.de los fulanos
+        phone: 5678-1234
+    usuarioRegistrado:
+      type: object
+      properties:
+        email: 
+          type: string
+          description: correo de usuario
+        password:
+          type: string
+          description: clave de ingreso del usuario
+      example:
+        correo: bob@gmail.com
+        password: 1234
   schemas:
     User:
       type: object
@@ -61,7 +106,46 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 items:
                   $ref: '#/components/schemas/User'
-      
+  /api/sessions/register/:
+    post:
+      summary: Agrega un usuario registrandolo y almacenandolo en la base de datos
+      tags:
+        - Users
+      responses:
+        "200":
+          description: El usuario fue registrado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/User'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/nuevoUsuario'
+  /api/sessions/login/:
+    post:
+      summary: Inicia la sesion con los datos del usuario ya registrado
+      tags:
+        - Users
+      responses:
+        "200":
+          description: El inicio de sesion fue exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/User'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/usuarioRegistrado'
