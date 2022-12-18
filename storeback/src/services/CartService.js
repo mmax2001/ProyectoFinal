@@ -18,15 +18,18 @@ export default class CartService extends CentralRepository {
         const cart = await this.getBy({_id:id});
         if (!cart) throw { status: 404, error: 'Carrito no encontrado' };
         const productInput = await productService.getBy({_id:productId});
+        console.log("ESTO TIENE PRODUCTO",productInput);
         if (!productInput) throw { status: 404, error: 'Producto no encontrado' };    
 
         if (cart.products.length >= 0) {
             productInput.quantity++;
+            console.log(productInput.quantity)
             const existProduct = cart.products.find((p) => p._id == productId);
+            console.log("EL PRODUCTO EXISTE",existProduct);
 
-            if (existProduct) productInput.quantity++;
+            if (existProduct) existProduct.quantity++;
             else cart.products.push(productInput);
-            console.log(cart.products)
+            console.log("EL PRODUCTO BUSCADO",cart.products)
         }
 
         return cartService.update(cart,id);
